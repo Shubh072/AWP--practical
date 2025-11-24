@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+
+    <style>
+        body {
+            background: #eef2f3;
+            font-family: Arial, sans-serif;
+            padding: 40px;
+        }
+        .form-box {
+            width: 420px;
+            margin: auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #999;
+            margin-bottom: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #0078ff;
+            border: none;
+            color: white;
+            font-size: 17px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #005fcc;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-box">
+        <h2>Form Validation</h2>
+
+        <form onsubmit="return validateForm()">
+
+            <!-- Name -->
+            <label>Name:</label>
+            <input type="text" id="name">
+            <div id="nameError" class="error"></div>
+
+            <!-- Email -->
+            <label>Email:</label>
+            <input type="text" id="email">
+            <div id="emailError" class="error"></div>
+
+            <!-- Phone -->
+            <label>Phone:</label>
+            <input type="text" id="phone">
+            <div id="phoneError" class="error"></div>
+
+            <!-- Password -->
+            <label>Password:</label>
+            <input type="password" id="password">
+            <div id="passwordError" class="error"></div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- JavaScript Validation -->
+    <script>
+        function validateForm() {
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            let password = document.getElementById("password").value.trim();
+
+            // Clear previous errors
+            document.getElementById("nameError").innerHTML = "";
+            document.getElementById("emailError").innerHTML = "";
+            document.getElementById("phoneError").innerHTML = "";
+            document.getElementById("passwordError").innerHTML = "";
+
+            let isValid = true;
+
+            // Name validation
+            if (name === "") {
+                document.getElementById("nameError").innerHTML = "Name is required.";
+                isValid = false;
+            }
+
+            // Email validation (simple regex)
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.match(emailPattern)) {
+                document.getElementById("emailError").innerHTML = "Enter valid email.";
+                isValid = false;
+            }
+
+            // Phone validation
+            if (!phone.match(/^\d{10}$/)) {
+                document.getElementById("phoneError").innerHTML = "Phone must be 10 digits.";
+                isValid = false;
+            }
+
+            // Password validation
+            if (password.length < 6) {
+                document.getElementById("passwordError").innerHTML = "Password must be at least 6 characters.";
+                isValid = false;
+            }
+
+            return isValid; // Prevent form submit if false
+        }
+    </script>
+
+</body>
+</html>

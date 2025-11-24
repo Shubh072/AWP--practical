@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Fetch Example</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f3;
+            padding: 40px;
+        }
+        #dataBox {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #0078ff;
+            padding: 10px 20px;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #005fcc;
+        }
+        pre {
+            margin-top: 20px;
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>AJAX – Fetching Remote Data using XMLHttpRequest</h2>
+
+    <button onclick="loadData()">Fetch Data</button>
+
+    <div id="dataBox">
+        <h3>Output:</h3>
+        <pre id="result">Click the button to load remote data...</pre>
+    </div>
+
+    <script>
+        function loadData() {
+            // Create XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // API URL (public placeholder API)
+            var url = "http://127.0.0.1:5500/feedback.html";
+
+            // Open GET request
+            xhr.open("GET", url, true);
+
+            // When data is ready
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {        // Completed
+                    if (xhr.status === 200) {     // Success
+                        document.getElementById("result").textContent = xhr.responseText;
+                    } else {
+                        document.getElementById("result").textContent = "Error loading data!";
+                    }
+                }
+            };
+
+            // Send request
+            xhr.send();
+        }
+    </script>
+
+</body>
+</html>

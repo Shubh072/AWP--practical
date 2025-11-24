@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS Two-Way Data Binding</title>
+
+    <!-- AngularJS CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f3;
+            padding: 40px;
+            text-align: center;
+        }
+        .box {
+            width: 400px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #888;
+        }
+        h3 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <h2>Student Details – Two-Way Binding</h2>
+
+        <!-- Input Fields -->
+        <input type="text" ng-model="studentName" placeholder="Enter Student Name">
+
+        <input type="text" ng-model="subject" placeholder="Enter Subject">
+
+        <input type="number" ng-model="marks" placeholder="Enter Marks">
+
+        <!-- Live Output -->
+        <h3>Student Name: <span ng-bind="studentName"></span></h3>
+        <h3>Subject: <span ng-bind="subject"></span></h3>
+        <h3>Marks: <span ng-bind="marks"></span></h3>
+    </div>
+
+</body>
+</html>

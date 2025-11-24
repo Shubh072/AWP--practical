@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="expApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS Expressions with User Input</title>
+
+    <!-- AngularJS CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <style>
+        body {
+            background: #eef2f3;
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            text-align: center;
+        }
+        .box {
+            width: 500px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #999;
+            margin-bottom: 12px;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+
+<body ng-controller="expCtrl">
+
+    <div class="box">
+        <h2>AngularJS Expressions with User Input</h2>
+
+        <!-- USER INPUT SECTION -->
+        <div class="section">
+            <h3>Enter Student Details</h3>
+
+            <input type="text" ng-model="student.name" placeholder="Enter Student Name">
+
+            <input type="number" ng-model="marks.math" placeholder="Math Marks">
+
+            <input type="number" ng-model="marks.science" placeholder="Science Marks">
+
+            <input type="number" ng-model="marks.english" placeholder="English Marks">
+        </div>
+
+        <!-- OBJECT OUTPUT -->
+        <div class="section">
+            <h3>Student Information</h3>
+            <p><b>Name:</b> {{ student.name }}</p>
+        </div>
+
+        <!-- ARRAY OUTPUT -->
+        <div class="section">
+            <h3>Subjects</h3>
+            <p>{{ subjects[0] }}, {{ subjects[1] }}, {{ subjects[2] }}</p>
+        </div>
+
+        <!-- CALCULATIONS OUTPUT -->
+        <div class="section">
+            <h3>Marks & Calculations</h3>
+            <p><b>Math:</b> {{ marks.math }}</p>
+            <p><b>Science:</b> {{ marks.science }}</p>
+            <p><b>English:</b> {{ marks.english }}</p>
+
+            <p><b>Total:</b> {{ marks.math + marks.science + marks.english }}</p>
+
+            <p><b>Percentage:</b> 
+                {{ ((marks.math + marks.science + marks.english) / 300) * 100 | number:2 }}%
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        var app = angular.module("expApp", []);
+
+        app.controller("expCtrl", function($scope) {
+
+            // Object for student
+            $scope.student = { name: "" };
+
+            // Subjects array
+            $scope.subjects = ["Math", "Science", "English"];
+
+            // Marks object with default values
+            $scope.marks = {
+                math: 0,
+                science: 0,
+                english: 0
+            };
+        });
+    </script>
+
+</body>
+</html>

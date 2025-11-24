@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS ng-app & ng-controller Example</title>
+
+    <!-- AngularJS CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <style>
+        body {
+            background: #eef2f3;
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            text-align: center;
+        }
+        .box {
+            width: 400px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box" ng-controller="welcomeCtrl">
+        <h2>{{ message }}</h2>
+    </div>
+
+    <script>
+        // Create AngularJS Application
+        var app = angular.module("myApp", []);
+
+        // Create Controller
+        app.controller("welcomeCtrl", function($scope) {
+            $scope.message = "Welcome to AngularJS!";
+        });
+    </script>
+
+</body>
+</html>

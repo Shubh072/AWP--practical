@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="studentApp">
+<head>
+    <meta charset="UTF-8">
+    <meta-name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS Student Table using ng-repeat</title>
+
+    <!-- AngularJS CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <style>
+        body {
+            background: #eef2f3;
+            font-family: Arial, sans-serif;
+            padding: 40px;
+        }
+        table {
+            width: 70%;
+            margin: auto;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        th {
+            background: #0078ff;
+            color: white;
+            font-size: 18px;
+        }
+        td {
+            font-size: 16px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body ng-controller="studentCtrl">
+
+    <h2>Student Information Using AngularJS ng-repeat</h2>
+
+    <table>
+        <tr>
+            <th>Student Name</th>
+            <th>Subject</th>
+            <th>Marks</th>
+        </tr>
+
+        <!-- ng-repeat to show each row -->
+        <tr ng-repeat="s in students">
+            <td>{{ s.name }}</td>
+            <td>{{ s.subject }}</td>
+            <td>{{ s.marks }}</td>
+        </tr>
+    </table>
+
+    <script>
+        // AngularJS App
+        var app = angular.module("studentApp", []);
+
+        // Controller
+        app.controller("studentCtrl", function($scope) {
+
+            // Array of student information
+            $scope.students = [
+                { name: "Aditya", subject: "Math", marks: 85 },
+                { name: "Prajwal", subject: "Science", marks: 90 },
+                { name: "Neha", subject: "English", marks: 78 },
+                { name: "Rohan", subject: "Computer", marks: 95 }
+            ];
+        });
+    </script>
+
+</body>
+</html>

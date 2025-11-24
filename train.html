@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moving Train - Event Handling</title>
+
+<style>
+    body {
+        background: #e8f6ff;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding-top: 40px;
+    }
+
+    #track {
+        width: 90%;
+        height: 200px;
+        border: 3px solid #444;
+        margin: auto;
+        margin-top: 30px;
+        background: linear-gradient(#fff, #cfe8ff);
+        overflow: hidden;
+        border-radius: 12px;
+        position: relative;
+    }
+
+    #train {
+        width: 150px;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        transition: left 0.1s linear;
+    }
+
+    button {
+        padding: 12px 22px;
+        font-size: 16px;
+        border: none;
+        background: #0078ff;
+        color: white;
+        border-radius: 6px;
+        margin: 8px;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background: #005fcc;
+    }
+</style>
+</head>
+
+<body>
+
+<h2> Moving Train Using Event Handling</h2>
+
+<button onclick="startTrain()">Start Train</button>
+<button onclick="stopTrain()">Stop Train</button>
+<button onclick="speedUp()">Speed Up</button>
+
+<div id="track">
+    <img id="train" src="https://cdn-icons-png.flaticon.com/512/744/744465.png" alt="train">
+</div>
+
+<script>
+    let train = document.getElementById("train");
+    let position = 0;
+    let speed = 10;  
+    let interval;
+
+    function startTrain() {
+        if (!interval) {
+            interval = setInterval(moveTrain, speed);
+        }
+    }
+
+    function stopTrain() {
+        clearInterval(interval);
+        interval = null;
+    }
+
+    function speedUp() {
+        if (speed > 2) speed -= 2;  // Increase speed
+        stopTrain();
+        startTrain();
+    }
+
+    function moveTrain() {
+        position += 5;
+        if (position > window.innerWidth) {
+            position = -150;  // Reset to start position
+        }
+        train.style.left = position + "px";
+    }
+</script>
+
+</body>
+</html>
